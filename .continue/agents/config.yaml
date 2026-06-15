@@ -1,0 +1,55 @@
+name: Local LLM
+version: 1.0.0
+schema: v1
+
+models:
+# OLLAMA (http://localhost:11434)
+  - name: gemma3:12b OLLAMA
+    provider: ollama
+    model: gemma3:12b
+    # apiBase: http://localhost:11434
+    roles:
+      - chat
+      - edit
+      - apply
+
+  - name: qwen2.5-coder:14b OLLAMA
+    provider: ollama
+    model: qwen2.5-coder:14b
+    # apiBase: http://localhost:11434
+    roles:
+      - autocomplete
+
+  - name: nomic OLLAMA
+    provider: ollama
+    model: nomic-embed-text:latest
+    # apiBase: http://localhost:11434
+    roles:
+      - embed
+
+# LM STUDIO (http://localhost:1234/v1)
+  - name: gemma3:12b LM STUDIO
+    provider: openai
+    model: gemma3:12b
+    apiBase: http://localhost:1234/v1
+    apiKey: lm-studio
+    roles:
+      - chat
+      - edit
+      - apply
+
+  - name: qwen2.5-coder:14b LM STUDIO
+    provider: openai
+    model: qwen2.5-coder:14b
+    apiBase: http://localhost:1234/v1
+    apiKey: lm-studio
+    roles:
+      - autocomplete
+
+  - name: nomic LM STUDIO
+    provider: openai
+    model: nomic-embed-text:latest
+    apiBase: http://localhost:1234/v1
+    apiKey: lm-studio
+    roles:
+      - embed

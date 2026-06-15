@@ -1,0 +1,79 @@
+# Базовый Docker-образ для job'ов без явного image
+image: python:3.12-bookworm
+
+# Порядок выполнения стадий: тесты -> сборка отчёта -> ручной деплой
+stages:
+  - test
+  - report
+  - deploy
+
+# Переменные окружения для ускорения pip и более прозрачных логов Python
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PYTHONUNBUFFERED: "1"
+  ALLURE_VERSION: "2.30.0"
+
+# Кэш pip между пайплайнами, чтобы не качать зависимости каждый раз
+cache:
+  paths:
+    - .cache/pip
+
+run_tests:
+  stage: test
+  before_script:
+    # 1) Обновляем индекс пакетов в контейнере
+    - apt-get update
+    # 2) Ставим браузер и окружение для UI-тестов в CI
+    - apt-get install -y --no-install-recommends chromium chromium-driver xvfb xauth
+    # 3) Обновляем pip и ставим Python-зависимости проекта
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+  script:
+    # 4) Запускаем pytest в виртуальном дисплее и одновременно сохраняем:
+    #    - JUnit XML для вкладки Tests в GitLab
+    #    - allure-results для последующей генерации HTML-отчёта
+    - xvfb-run -a pytest -v --tb=line --browser=chrome --language=en -m need_review --junitxml=report.xml --alluredir=allure-results --clean-alluredir
+  after_script:
+    # 5) Защита от "No files to upload", если тесты упали до создания файлов
+    - '[ -f report.xml ] || echo "<testsuite></testsuite>" > report.xml'
+    - mkdir -p allure-results
+  artifacts:
+    # 6) Всегда загружаем артефакты, даже если тесты упали
+    when: always
+    reports:
+      junit: report.xml
+    paths:
+      - report.xml
+      - allure-results
+    expire_in: 7 days
+
+allure_report:
+  stage: report
+  when: always
+  needs:
+    - job: run_tests
+      artifacts: true
+  before_script:
+    # 7) Ставим Java + утилиты и скачиваем Allure CLI
+    - apt-get update
+    - apt-get install -y --no-install-recommends default-jre curl unzip
+    - curl -sSL "https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/${ALLURE_VERSION}/allure-commandline-${ALLURE_VERSION}.zip" -o allure.zip
+    - unzip -q allure.zip
+  script:
+    # 8) Генерируем HTML-отчёт из allure-results
+    - ./allure-${ALLURE_VERSION}/bin/allure generate allure-results -o allure-report --clean
+  artifacts:
+    # 9) Публикуем готовый HTML как артефакт job'а
+    when: always
+    paths:
+      - allure-report
+    expire_in: 7 days
+
+deploy_app:
+  stage: deploy
+  script:
+    # 10) Пример ручного деплоя (заглушка)
+    - echo "Deploy step example"
+  only:
+    - main
+  when: manual
