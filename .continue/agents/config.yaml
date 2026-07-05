@@ -3,9 +3,7 @@ version: 1.0.0
 schema: v1
 
 models:
-  # LM Studio / OpenAI-compatible provider
-
-  # Gemma 4 E4B 8B: vision, tool use, reasoning
+  # Gemma 4 E4B: 8b, 8 bit, vision, tool use, reasoning
   - name: Gemma 4 E4B (LM Studio)
     provider: openai
     model: google/gemma-4-e4b
@@ -18,9 +16,8 @@ models:
       - chat
       - edit
       - apply
-      - autocomplete
 
-  # Qwen3.5 9B: vision, tool use, reasoning
+  # Qwen3.5 9B: 9b, 8 bit, vision, tool use, reasoning
   - name: Qwen3.5 9B (LM Studio)
     provider: openai
     model: qwen/qwen3.5-9b
@@ -33,6 +30,26 @@ models:
       - chat
       - edit
       - apply
+
+  # Qwen2.5 Coder 14B Instruct: 14b, 4 bit, code generation and fixing
+  - name: Qwen2.5 Coder 14B Instruct (LM Studio)
+    provider: openai
+    model: qwen/qwen2.5-coder-14b-instruct
+    apiBase: http://localhost:1234/v1
+    apiKey: lm-studio
+    roles:
+      - chat
+      - edit
+      - apply
+      - autocomplete
+
+  # Qwen2.5 Coder 7B Instruct: 7b, 4 bit, code completion
+  - name: Qwen2.5 Coder 7B Instruct (LM Studio)
+    provider: openai
+    model: qwen/qwen2.5-coder-7b-instruct
+    apiBase: http://localhost:1234/v1
+    apiKey: lm-studio
+    roles:
       - autocomplete
 
   - name: Nomic Embed Text (LM Studio)
@@ -42,67 +59,3 @@ models:
     apiKey: lm-studio
     roles:
       - embed
-
-  # GPT-OSS 20B: tool use, reasoning
-  - name: GPT-OSS 20B (LM Studio)
-    provider: openai
-    model: openai/gpt-oss-20b
-    apiBase: http://localhost:1234/v1
-    apiKey: lm-studio
-    capabilities:
-      - tool_use
-    roles:
-      - chat
-      - edit
-      - apply
-      - autocomplete
-
-  # Ollama provider
-
-  # Gemma 4 E4B 8B: vision, tool use, reasoning
-  - name: Gemma 4 E4B (Ollama)
-    provider: ollama
-    model: gemma4:e4b
-    apiBase: http://localhost:11434
-    capabilities:
-      - tool_use
-      - image_input
-    roles:
-      - chat
-      - edit
-      - apply
-      - autocomplete
-
-  # Qwen3.5 9B: vision, tool use, reasoning
-  - name: Qwen3.5 9B (Ollama)
-    provider: ollama
-    model: qwen3.5:9b
-    apiBase: http://localhost:11434
-    capabilities:
-      - tool_use
-      - image_input
-    roles:
-      - chat
-      - edit
-      - apply
-      - autocomplete
-
-  - name: Nomic Embed Text (Ollama)
-    provider: ollama
-    model: nomic-embed-text:latest
-    apiBase: http://localhost:11434
-    roles:
-      - embed
-
-  # GPT-OSS 20B: tool use, reasoning
-  - name: GPT-OSS 20B (Ollama)
-    provider: ollama
-    model: gpt-oss:20b
-    apiBase: http://localhost:11434
-    capabilities:
-      - tool_use
-    roles:
-      - chat
-      - edit
-      - apply
-      - autocomplete
