@@ -66,7 +66,7 @@
   },
   // Аргументы запуска autopep8 / Black:
   "black-formatter.args": [
-    "--line-length", // Лимит макс. длины строки (влияет на форматирование)
+    "--line-length", // Лимит макс. длины строки, для autopep8 --max-line-length
     "88"
   ],
   // Flake8:
