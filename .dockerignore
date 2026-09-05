@@ -1,60 +1,84 @@
-# Python bytecode / caches
+#! PYTHON
+# Байт-код и кэш
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
+.mypy_cache/
+.pyre/
+.ruff_cache/
 
-# Virtual environments
+# Виртуальное окружение
 .venv/
 venv/
+env/
 ENV/
+.python-version
 
-# Packaging / build artifacts
+# Сборка и пакеты
 build/
 dist/
 *.egg-info/
 .eggs/
+*.egg
+*.manifest
+*.spec
 
-# Test / coverage
-.pytest_cache/
+# Логи
+*.log
+
+
+#! ТЕСТИРОВАНИЕ И ОТЧЁТЫ
 .coverage
 .coverage.*
 htmlcov/
 .tox/
 .nox/
+.pytest_cache/
+allure_results/
+allure-results/
+reports/
+test-results/
+failures/
 
-# Type checker / linter caches
-.mypy_cache/
-.pyre/
-.ruff_cache/
 
-# IDE / editor
+#! IDE И РЕДАКТОРЫ
 .vscode/
+.vscode-server/
 .idea/
+*.swp
+*.swo
+*~
 
-# OS files
-.DS_Store
-Thumbs.db
 
-# Git
-.git/
-.gitignore
-
-# Logs
-*.log
-
-# Local config / secrets (adjust to your project)
+#! ОКРУЖЕНИЕ И СЕКРЕТЫ
 .env
 .env.*
+*.pem
+*.pub
+*secret*
 
-# Docker artifacts
+
+#! OS И ФАЙЛОВАЯ СИСТЕМА
+.DS_Store
+Thumbs.db
+*.sqlite3
+*.db
+
+
+#! GIT И DOCKER
+.git/
+.gitignore
+.gitattributes
+.dockerignore
 Dockerfile*
 docker-compose*.yml
+.docker/
 
-# Node (if your repo has frontend tooling)
+
+#! ПРОЧЕЕ
 node_modules/
-
-# Database volumes / local data
-*.sqlite3
-
-# Project-specific
 .cache/
+out/
+tmp/
+temp/

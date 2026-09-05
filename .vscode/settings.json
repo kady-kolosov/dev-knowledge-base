@@ -92,7 +92,6 @@
     "python" // Подсветка отступов для Python
   ],
   // eCSStractor:
-  "ecsstractor_port.bem_nesting": true, // Включить вложенность BEM: true / false
-  // Codex
-  "chatgpt.commentCodeLensEnabled": false
+  "ecsstractor_port.bem_nesting": true,
+  "python-envs.defaultEnvManager": "ms-python.python:system", // Включить вложенность BEM: true / false
 }
