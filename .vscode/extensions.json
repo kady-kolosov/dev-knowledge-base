@@ -2,21 +2,19 @@
   "recommendations": [
     "aaron-bond.better-comments",
     "anthropic.claude-code",
+    "charliermarsh.ruff",
     "continue.continue",
     "diz.ecsstractor-port",
     "editorconfig.editorconfig",
     "formulahendry.auto-close-tag",
     "formulahendry.auto-rename-tag",
+    "humao.rest-client",
     "ionutvmi.path-autocomplete",
     "kevinrose.vsc-python-indent",
     "mechatroner.rainbow-csv",
     "ms-azuretools.vscode-containers",
     "ms-ceintl.vscode-language-pack-ru",
-    "ms-python.autopep8",
-    "ms-python.black-formatter",
     "ms-python.debugpy",
-    "ms-python.flake8",
-    "ms-python.mypy-type-checker",
     "ms-python.python",
     "ms-python.vscode-pylance",
     "ms-python.vscode-python-envs",
@@ -26,5 +24,5 @@
     "openai.chatgpt",
     "pkief.material-icon-theme",
     "pkief.material-product-icons"
-  ],
+  ]
 }
