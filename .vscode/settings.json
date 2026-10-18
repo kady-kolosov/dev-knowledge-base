@@ -28,7 +28,7 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.inlineSuggest.enabled": true,
   "editor.snippetSuggestions": "top",
-  "editor.hover.enabled": "off", // Включить подсказки при наведении (VS Code)
+  "editor.hover.enabled": "on", // Включить подсказки при наведении (VS Code)
   // "editor.hover.enabled": false, // Включить подсказки при наведении (Cursor)
   "editor.minimap.enabled": false,
   "editor.minimap.scale": 2,
