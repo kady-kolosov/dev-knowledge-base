@@ -16,6 +16,7 @@ models:
       - chat
       - edit
       - apply
+      - autocomplete
 
   # Qwen3.5 9B: 9b, 8 bit, vision, tool use, reasoning
   - name: Qwen3.5 9B (LM Studio)
@@ -30,26 +31,6 @@ models:
       - chat
       - edit
       - apply
-
-  # Qwen2.5 Coder 14B Instruct: 14b, 4 bit, code generation and fixing
-  - name: Qwen2.5 Coder 14B Instruct (LM Studio)
-    provider: openai
-    model: qwen/qwen2.5-coder-14b-instruct
-    apiBase: http://localhost:1234/v1
-    apiKey: lm-studio
-    roles:
-      - chat
-      - edit
-      - apply
-      - autocomplete
-
-  # Qwen2.5 Coder 7B Instruct: 7b, 4 bit, code completion
-  - name: Qwen2.5 Coder 7B Instruct (LM Studio)
-    provider: openai
-    model: qwen/qwen2.5-coder-7b-instruct
-    apiBase: http://localhost:1234/v1
-    apiKey: lm-studio
-    roles:
       - autocomplete
 
   - name: Nomic Embed Text (LM Studio)
